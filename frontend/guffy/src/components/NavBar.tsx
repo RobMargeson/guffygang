@@ -3,8 +3,7 @@ import { ModeToggle } from "./togglemode";
 import guffyLogo from "@/images/guffylogo1.png"
 import * as React from "react"
 import Link from "next/link"
-import { cn } from "@/lib/utils"
-
+import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -18,72 +17,59 @@ import Image from "next/image";
 
 export function Nav() {
   return (
-    <div className="flex">
-<NavigationMenu>
-      <NavigationMenuList>
-                    <NavigationMenuItem className="flex-start">
-                    <Image src={guffyLogo} alt="Guffy Logo" className="fill-current" />
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-          <Link href="/about" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              ABOUT US
-            </NavigationMenuLink>
-          </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-          <Link href="/shop" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              GUFF WEAR
-            </NavigationMenuLink>
-          </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/schedule" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                SCHEDULE
-              </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem> 
+    <div className="flex justify-between">
+            <div className="flex items-center">
+        <Link href="/" legacyBehavior passHref>
+          <a>
+            <Image
+              src={guffyLogo}
+              alt="Guffy Logo"
+              className="h-24 w-auto pt-4 invert dark:invert-0"
+            />
+          </a>
+        </Link>
+      </div>
+
+        <NavigationMenu>
+          <NavigationMenuList className="flex space-x-4 pr-32">
             <NavigationMenuItem>
-            <Link href="/games" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                GAMES
-              </NavigationMenuLink>
+              <Link href="/about" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  ABOUT US
+                </NavigationMenuLink>
               </Link>
-            </NavigationMenuItem> 
-        <NavigationMenuItem className="flex-end" >
-            <ModeToggle />
-        </NavigationMenuItem>
-              </NavigationMenuList>
-    </NavigationMenu>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/shop" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  GUFF WEAR
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/schedule" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  SCHEDULE
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>GAMES</NavigationMenuTrigger>
+              <NavigationMenuContent>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            
+          </NavigationMenuList>
+        </NavigationMenu>
+        <div className="flex space-x-4 pt-4 pr-4">
+        <Link href={"/login"}>
+          <Button>Login</Button>
+          </Link>
+        <ModeToggle />
+
+        </div>
+
     </div>
     
   )
 }
-
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  )
-})
-ListItem.displayName = "ListItem"
