@@ -1,38 +1,89 @@
-const NavBar = () => {
-  return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#">Navbar</a>
-      <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="#">ABOUT US</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">GUFF WEAR</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">SCHEDULE</a>
-          </li>
-          <li className="nav-item dropdown">
-            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              GAMES
-            </a>
-            <ul className="dropdown-menu">
-              <li><a className="dropdown-item" href="#">GTA V</a></li>
-              <li><a className="dropdown-item" href="#">GTA GOLF</a></li>
-              <li><a className="dropdown-item" href="#">TURBOGOLF</a></li>
-            </ul>
-          </li>
-          <li>
-          <button className="btn btn-outline-success" type="submit">Search</button>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  );
-};
+"use client"
+import { ModeToggle } from "./togglemode";
+import guffyLogo from "@/images/guffylogo1.png"
+import * as React from "react"
+import Link from "next/link"
+import { cn } from "@/lib/utils"
 
-export default NavBar;
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
+import Image from "next/image";
+
+export function Nav() {
+  return (
+    <div className="flex">
+<NavigationMenu>
+      <NavigationMenuList>
+                    <NavigationMenuItem className="flex-start">
+                    <Image src={guffyLogo} alt="Guffy Logo" className="fill-current" />
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+          <Link href="/about" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              ABOUT US
+            </NavigationMenuLink>
+          </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+          <Link href="/shop" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              GUFF WEAR
+            </NavigationMenuLink>
+          </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/schedule" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                SCHEDULE
+              </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem> 
+            <NavigationMenuItem>
+            <Link href="/games" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                GAMES
+              </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem> 
+        <NavigationMenuItem className="flex-end" >
+            <ModeToggle />
+        </NavigationMenuItem>
+              </NavigationMenuList>
+    </NavigationMenu>
+    </div>
+    
+  )
+}
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  )
+})
+ListItem.displayName = "ListItem"
