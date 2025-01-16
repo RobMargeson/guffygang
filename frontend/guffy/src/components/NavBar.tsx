@@ -1,7 +1,6 @@
 "use client"
 import { ModeToggle } from "./togglemode";
 import guffyLogo from "@/images/guffylogo1.png"
-import * as React from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
@@ -33,7 +32,7 @@ export function Nav() {
         <NavigationMenu>
           <NavigationMenuList className="flex space-x-4 pr-32">
             <NavigationMenuItem>
-              <Link href="/about" legacyBehavior passHref>
+              <Link href="#aboutUs" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   ABOUT US
                 </NavigationMenuLink>

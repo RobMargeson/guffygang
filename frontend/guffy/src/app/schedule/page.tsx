@@ -1,11 +1,18 @@
-import { Nav } from "@/components/NavBar"
+"use client"
 
-export default function about() {
+import { Nav } from "@/components/NavBar"
+import Schedule from "@/components/Calendar"
+
+export default function schedule() {
     return (
         <>
                 <Nav />
         <main>
-            <h2>Schedule</h2>
+            <div className="flex justify-center">
+
+            <Schedule />
+
+            </div>
         </main>
         </>
 
