@@ -1,4 +1,6 @@
 "use client"
+import { cn } from "@/lib/utils"
+import * as React from "react"
 import { ModeToggle } from "./togglemode";
 import guffyLogo from "@/images/guffylogo1.png"
 import Link from "next/link"
@@ -13,6 +15,46 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import Image from "next/image";
+
+const components: { title: string; href: string; description: string }[] = [
+  {
+    title: "Alert Dialog",
+    href: "/docs/primitives/alert-dialog",
+    description:
+      "A modal dialog that interrupts the user with important content and expects a response.",
+  },
+  {
+    title: "Hover Card",
+    href: "/docs/primitives/hover-card",
+    description:
+      "For sighted users to preview content available behind a link.",
+  },
+  {
+    title: "Progress",
+    href: "/docs/primitives/progress",
+    description:
+      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+  },
+  {
+    title: "Scroll-area",
+    href: "/docs/primitives/scroll-area",
+    description: "Visually or semantically separates content.",
+  },
+  {
+    title: "Tabs",
+    href: "/docs/primitives/tabs",
+    description:
+      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+  },
+  {
+    title: "Tooltip",
+    href: "/docs/primitives/tooltip",
+    description:
+      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+  },
+]
+
+
 
 export function Nav() {
   return (
@@ -32,7 +74,7 @@ export function Nav() {
         <NavigationMenu>
           <NavigationMenuList className="flex space-x-4 pr-32">
             <NavigationMenuItem>
-              <Link href="#aboutUs" legacyBehavior passHref>
+              <Link href="/" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   ABOUT US
                 </NavigationMenuLink>
@@ -48,13 +90,41 @@ export function Nav() {
             <NavigationMenuItem>
               <Link href="/schedule" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  SCHEDULE
-                </NavigationMenuLink>
+
+              <NavigationMenuTrigger>SCHEDULE</NavigationMenuTrigger>
+              </NavigationMenuLink>
               </Link>
+              <NavigationMenuContent>
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+              {components.map((component) => (
+                <ListItem
+                  key={component.title}
+                  title={component.title}
+                  href={component.href}
+                >
+                  {component.description}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger>GAMES</NavigationMenuTrigger>
               <NavigationMenuContent>
+                <ul>
+                  <li>
+                    Dank Memes
+                  </li>
+                  <li>
+                    Guffball
+                  </li>
+                  <li>
+                    Doris
+                  </li>
+                  <li>
+                    Jackie
+                  </li>
+                </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
             
@@ -72,3 +142,31 @@ export function Nav() {
     
   )
 }
+
+
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  )
+})
+ListItem.displayName = "ListItem"
