@@ -36,7 +36,7 @@ const games: { title: string; href: string; logo: React.ReactNode }[] = [
     title: "Hover Card",
     href: "/eldenring",
     logo:
-      <Image src={EldenRing} alt="Elden Ring" className="h-24 w-fill pt-4 invert dark:invert-0" />,
+      <Image src={EldenRing} alt="Elden Ring" className="h-24 w-fill pt-4" />,
   },
   {
     title: "Progress",
@@ -48,7 +48,7 @@ const games: { title: string; href: string; logo: React.ReactNode }[] = [
   {
     title: "Scroll-area",
     href: "/jizz",
-    logo:       <Image src={RocketLeague} alt="Rocket League" className="h-24 w-fill pt-4 invert dark:invert-0" />,
+    logo:       <Image src={RocketLeague} alt="Rocket League" className="h-24 w-fill pt-4" />,
 
   },
   {
@@ -62,7 +62,7 @@ const games: { title: string; href: string; logo: React.ReactNode }[] = [
     title: "Tooltip",
     href: "/lsgc",
     logo:
-    <Image src={LSGC} alt="Los Santos Golf Club" className="h-24 w-fill pt-4 invert dark:invert-0" />,
+    <Image src={LSGC} alt="Los Santos Golf Club" className="h-24 w-fill pt-4" />,
 
   },
 ]
