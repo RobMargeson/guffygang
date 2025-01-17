@@ -3,6 +3,14 @@ import { cn } from "@/lib/utils"
 import * as React from "react"
 import { ModeToggle } from "./togglemode";
 import guffyLogo from "@/images/guffylogo1.png"
+import GTAV from "@/images/gtav.png"
+import EldenRing from "@/images/eldenring.png"
+import Vermintide2 from "@/images/vermintide2.png"
+import RocketLeague from "@/images/rocketleague.png"
+import Days from "@/images/7days.png"
+import LSGC from "@/images/lossantosgc.png"
+
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
@@ -16,41 +24,79 @@ import {
 } from "@/components/ui/navigation-menu"
 import Image from "next/image";
 
-const components: { title: string; href: string; description: string }[] = [
+const games: { title: string; href: string; logo: React.ReactNode }[] = [
   {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+    title: "GTA V",
+    href: "/gtav",
+    logo:
+    <Image src={GTAV} alt="GTA V" className="h-24 w-fill pt-4 invert dark:invert-0" />,
+
   },
   {
     title: "Hover Card",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
+    href: "/eldenring",
+    logo:
+      <Image src={EldenRing} alt="Elden Ring" className="h-24 w-fill pt-4 invert dark:invert-0" />,
   },
   {
     title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+    href: "/rats",
+    logo:
+    <Image src={Vermintide2} alt="Vermintide 2" className="h-24 w-fill pt-4 invert dark:invert-0" />,
+
   },
   {
     title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
+    href: "/jizz",
+    logo:       <Image src={RocketLeague} alt="Rocket League" className="h-24 w-fill pt-4 invert dark:invert-0" />,
+
   },
   {
     title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+    href: "/7days",
+    logo:
+    <Image src={Days} alt="7 Days To Die" className="h-24 w-fill pt-4 invert dark:invert-0" />,
+
   },
   {
     title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+    href: "/lsgc",
+    logo:
+    <Image src={LSGC} alt="Los Santos Golf Club" className="h-24 w-fill pt-4 invert dark:invert-0" />,
+
+  },
+]
+
+const Schedule: {title: string, href: string, description: string}[] = [
+  {
+    title: "Golf",
+    href: "/golfschedule",
+    description: "##########",
+  },
+  {
+    title: "Golf",
+    href: "/golfschedule",
+    description: "##########",
+  },
+  {
+    title: "Golf",
+    href: "/golfschedule",
+    description: "##########",
+  },
+  {
+    title: "Golf",
+    href: "/golfschedule",
+    description: "##########",
+  },
+  {
+    title: "Golf",
+    href: "/golfschedule",
+    description: "##########",
+  },
+  {
+    title: "Golf",
+    href: "/golfschedule",
+    description: "##########",
   },
 ]
 
@@ -88,43 +134,40 @@ export function Nav() {
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/schedule" legacyBehavior passHref>
+              <Link href="/games" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
 
-              <NavigationMenuTrigger>SCHEDULE</NavigationMenuTrigger>
+              <NavigationMenuTrigger>GAMES</NavigationMenuTrigger>
               </NavigationMenuLink>
               </Link>
               <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
+              {games.map((component) => (
                 <ListItem
                   key={component.title}
-                  title={component.title}
                   href={component.href}
                 >
-                  {component.description}
+                  {component.logo}
                 </ListItem>
               ))}
             </ul>
           </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>GAMES</NavigationMenuTrigger>
+              <NavigationMenuTrigger>SCHEDULE</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul>
-                  <li>
-                    Dank Memes
-                  </li>
-                  <li>
-                    Guffball
-                  </li>
-                  <li>
-                    Doris
-                  </li>
-                  <li>
-                    Jackie
-                  </li>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                  {Schedule.map((component) => (
+                    <ListItem
+                      key={component.title}
+                      href={component.href}
+                      title={component.title}
+                    >
+                      {component.description}
+                    </ListItem>
+                  ))}
                 </ul>
+ 
               </NavigationMenuContent>
             </NavigationMenuItem>
             
