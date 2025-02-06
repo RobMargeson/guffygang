@@ -120,7 +120,7 @@ export function Nav() {
         <NavigationMenu>
           <NavigationMenuList className="flex space-x-4 pr-32">
             <NavigationMenuItem>
-              <Link href="/" legacyBehavior passHref>
+              <Link href="/about" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   ABOUT US
                 </NavigationMenuLink>

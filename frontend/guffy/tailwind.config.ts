@@ -9,6 +9,10 @@ export default {
   ],
   theme: {
   	extend: {
+
+		backgroundImage: {
+			'guffy-background': "url('@/images/purpleimg.png')",
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
