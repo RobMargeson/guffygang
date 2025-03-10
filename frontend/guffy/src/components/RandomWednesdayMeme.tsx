@@ -13,23 +13,22 @@ import stickemupfrog from "@/images/Wednesday/stickemupfrog.jpg"
 import Image from "next/image";
 
 
-const dict: {[key: number]: string} = {
-    0: happy,
-    1: ahhh,
-    2: testing123,
-    3: bootfrog,
-    4: panfrog,
-    5: santafrog,
-    6: postedupfrog,
-    7: dapperfrog,
-    8: distinguishedfrog,
-    9: plesantfrog,
-    10: stickemupfrog,
-    }
-
+const  randomImages = [
+    happy,
+    ahhh,
+    testing123,
+    bootfrog,
+    panfrog,
+    santafrog,
+    postedupfrog,
+    dapperfrog,
+    distinguishedfrog,
+    plesantfrog,
+    stickemupfrog,
+]
 
 const randomGen = () => { 
-        const value = dict[Math.floor(Math.random() * Object.keys(dict).length)];
+        const value = randomImages[Math.floor(Math.random() * Object.keys(randomImages).length)];
         return (
             <div>
               {value ? (

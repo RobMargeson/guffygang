@@ -4,6 +4,7 @@ import * as React from "react"
 import { ModeToggle } from "./togglemode";
 import guffyLogo from "@/images/guffylogo1.png"
 import GTAV from "@/images/gtav.png"
+import GTAV1 from "@/images/gtavu.png"
 import EldenRing from "@/images/eldenring.png"
 import Vermintide2 from "@/images/vermintide2.png"
 import RocketLeague from "@/images/rocketleague.png"
@@ -29,7 +30,7 @@ const games: { title: string; href: string; logo: React.ReactNode }[] = [
     title: "GTA V",
     href: "/gtav",
     logo:
-    <Image src={GTAV} alt="GTA V" className="h-24 w-fill pt-4 invert dark:invert-0" />,
+    <Image src={GTAV1} alt="GTA V" className="h-24 w-fill pt-4 invert dark:invert-0" />,
 
   },
   {
