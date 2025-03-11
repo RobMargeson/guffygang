@@ -1,18 +1,19 @@
-import Image from "next/image"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
-import { ClubIcon as GolfIcon, Trophy, Clock, Users, Target } from 'lucide-react'
-import { Nav } from "@/components/NavBar"
-import profiles from "@/testdata/profiles"
+import Image from "next/image";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { ClubIcon as GolfIcon, Trophy, Clock, Users, Target } from 'lucide-react';
+import { Nav } from "@/components/NavBar";
+import { notFound } from "next/navigation";
+import profiles from "@/testdata/profiles";
 
-export default function PlayerProfile({ params }: { params: { id: string } }) {
-  const playerId = parseInt(params.id, 10)
-  const player = profiles.find((p) => p.id === playerId)
+export default function PlayerProfile({ params }: { params: { slug: string } }) {
+  const playerId = Number.parseInt(params.slug);
+  const player = profiles.find((p) => p.id === playerId);
 
   if (!player) {
-    return null
+    return notFound();
   }
 
   return (
@@ -165,5 +166,5 @@ export default function PlayerProfile({ params }: { params: { id: string } }) {
         </main>
       </div>
     </>
-  )
+  );
 }
