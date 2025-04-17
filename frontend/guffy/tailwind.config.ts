@@ -13,6 +13,10 @@ export default {
 		backgroundImage: {
 			'guffy-background': "url('@/images/purpleimg.png')",
 		},
+		cursor: {
+			'larrythefrog': "url('@/images/cursors/larrythefrog.cur'), auto",
+			'sword': "url('@/images/cursors/sword.cur'), auto",
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
