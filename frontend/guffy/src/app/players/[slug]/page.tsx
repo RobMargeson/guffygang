@@ -8,9 +8,9 @@ import { Nav } from "@/components/NavBar";
 import { notFound } from "next/navigation";
 import profiles from "@/testdata/profiles";
 
-export default function PlayerProfile({ params }: { params: { slug: string } }) {
+export default async function PlayerProfile({ params }: { params: { slug: string } }) {
   const playerId = Number.parseInt(params.slug);
-  const player = profiles.find((p) => p.id === playerId);
+  const player = await profiles.find((p) => p.id === playerId);
 
   if (!player) {
     return notFound();
