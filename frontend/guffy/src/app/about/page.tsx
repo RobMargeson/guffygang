@@ -1,6 +1,5 @@
 import { Nav } from "@/components/NavBar"
 import Link from "next/link"
-
 export default function about() {
     return (
         <>

@@ -23,13 +23,13 @@ export default function Login() {
     setError("");
 
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
 
       if (!response.ok) {
         throw new Error("Invalid email or password");
