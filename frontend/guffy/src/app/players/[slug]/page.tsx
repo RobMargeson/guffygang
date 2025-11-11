@@ -6,16 +6,17 @@ import { Progress } from "@/components/ui/progress";
 import { ClubIcon as GolfIcon, Trophy, Clock, Users, Target } from 'lucide-react';
 import { Nav } from "@/components/NavBar";
 import { notFound } from "next/navigation";
-import profiles from "@/testdata/profiles";
 
-export default async function PlayerProfile({ params }: { params: { slug: string } }) {
-  const playerId = Number.parseInt(params.slug);
-  const player = await profiles.find((p) => p.id === playerId);
-
-  if (!player) {
+export default async function PlayerProfile({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params; 
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/players/${slug}`, {
+    cache: "no-store",
+  });
+  if (!res.ok) {
     return notFound();
   }
 
+  const player = await res.json();
   return (
     <>
       <Nav />

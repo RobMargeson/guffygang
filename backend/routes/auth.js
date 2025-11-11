@@ -2,9 +2,8 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/Users");
-
+const PlayerProfile = require("../models/players");
 const router = express.Router();
-
 
 //Register new user
 router.post("/register", async (req, res) => {
@@ -58,10 +57,23 @@ router.post("/login", async (req, res) => {
       { expiresIn: "1h" }
     );
 
+    // Find or create the player profile
+let playerProfile = await PlayerProfile.findOne({ user: user._id });
+if (!playerProfile) {
+  playerProfile = await PlayerProfile.create({
+    user: user._id,
+    name: user.email.split("@")[0],
+    bio: "New player profile",
+  });
+}
+
+
+
     res.json({
       message: "Login successful",
       token,
       user: { id: user._id, email: user.email },
+      playerId: playerProfile._id,
     });
   } catch (error) {
     console.error("Login error:", error);

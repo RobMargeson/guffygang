@@ -37,7 +37,12 @@ console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
 
       const data = await response.json();
       console.log("Login successful", data);
-      router.push("/");
+
+      if (data.playerID) {
+        router.push(`/players/${data.playerId}`);
+      } else {
+        router.push(`/players/${data.playerId}`);
+      }
     } catch (error) {
       setError(error.message);
     }
